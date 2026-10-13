@@ -36,7 +36,7 @@
 ### Hallazgos técnicos (no se ven en pantalla)
 
 - La revisión de tipos (`npm run lint`) falla porque faltan dos paquetes de definiciones (`@types/react` y los tipos de Vite).
-- La app pesa 1,17 MB al cargar, en parte por librerías instaladas que no se usan (`@base-ui/react`, `react-hook-form`, `yup`, `motion` y otras).
+- La app pesa 1,17 MB al cargar, principalmente por Firebase y la librería de gráficos. Había además librerías instaladas sin uso (`@base-ui/react`, `react-hook-form`, `yup`, `motion` y otras); ya se quitaron, aunque no afectaban el peso final. Reducir el peso requiere cargar las pantallas por partes; queda como mejora futura.
 - Las reglas de seguridad dejan crear indicadores dentro de la empresa de otro consultor si se conoce su identificador. El riesgo es bajo, pero es fácil de cerrar.
 
 ## Propuesta de trabajo
@@ -46,3 +46,7 @@
 **Paquete B, mejoras de experiencia:** guardado automático de los datos de la empresa con indicador de "Guardado", filtros de archivadas y favoritas en el inicio, y un gráfico por empresa.
 
 **Paquete C, ampliación:** tablas especializadas para L1 y L7, siguiendo el patrón de L6 y los formatos base de `docs/metodologia/`, y agregar L3 y L9.
+
+## Estado
+
+- **Paquete A: hecho** (13-oct-2026), en la rama `claude/github-fps-dashboard-search-16rkuk` del repositorio del tablero. Además de los hallazgos 1 a 7, se corrigió que el campo de sub-periodos no dejaba escribir comas. El hallazgo 2 quedó con esta regla: un indicador **cumple** si su variación es de al menos el mínimo del programa (8 %, configurable en `src/lib/reglas.ts`), aunque no alcance una meta más alta puesta por el consultor.
